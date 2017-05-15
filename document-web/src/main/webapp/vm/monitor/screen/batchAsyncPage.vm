@@ -1,0 +1,39 @@
+<div class="col-md-12">
+    <ol class="breadcrumb">
+        <li class="active">操作</li>
+        <li class="active">异步文档转换请求(批量)</li>
+    </ol>
+</div>
+<div class="col-md-12">
+    <form role="form">
+        <div class="form-group">
+            <label for="docFileUrl">文件链接地址</label>
+            <textarea id="docFileUrlList" name="docFileUrlList" class="form-control" rows="3">
+
+            </textarea>
+        </div>
+        <div class="form-group">
+            <label for="appIdInput">应用</label>
+            <select class="form-control" name="appIdInput" id="appIdInput">
+                #foreach($app in $!appDOList)
+                    <option value="$app.appId">$app.appName</option>
+                #end
+            </select>
+        </div>
+        <button id="batchAsyncCallBtn" type="button" class="btn btn-default">模拟异步文档转换请求(批量)接口调用</button>
+    </form>
+</div>
+<script>
+    $(function () {
+        //模拟异步文档转换请求(批量)接口调用
+        $("#batchAsyncCallBtn").click(function () {
+            var appId = $("#appIdInput").val().trim();
+            var docFileUrlList = $("#docFileUrlList").val().trim();
+            $.post("${ctxPath}/document/docMonitor/simulateBatchAsyncRequest",
+                    {"appId": appId, "docFileUrlList": docFileUrlList},
+                    function (result) {
+                        console.log(result);
+                    });
+        });
+    });
+</script>

@@ -1,0 +1,14 @@
+<div class="col-md-12">
+    <ol class="breadcrumb">
+        <li class="active">操作</li>
+        <li class="active">网站公告</li>
+    </ol>
+</div>
+<div class="col-md-12">
+    <img id="imgTag" src="$!{spring}"/>
+</div>
+<script>
+    $(function () {
+        $("#imgTag").width($(".breadcrumb").width());
+    });
+</script>
